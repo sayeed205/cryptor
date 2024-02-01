@@ -1,4 +1,7 @@
+import dotenv from 'dotenv';
 import z from 'zod';
+
+dotenv.config();
 
 const envVarsSchema = z.object({
     NODE_ENV: z.string().default('development'),
@@ -6,7 +9,7 @@ const envVarsSchema = z.object({
     CORS_ORIGIN: z.string().default('*'),
 });
 
-const parsed = envVarsSchema.safeParse(Bun.env);
+const parsed = envVarsSchema.safeParse(process.env);
 
 if (!parsed.success) {
     throw new Error(

@@ -1,6 +1,5 @@
+import { ErrorResponse } from '@server/utils';
 import type { NextFunction, Request, Response } from 'express';
-
-import { ErrorResponse } from '@/utils';
 
 export const errorHandler = (
     err: ErrorResponse,

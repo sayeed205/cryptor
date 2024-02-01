@@ -1,9 +1,5 @@
-import { exit } from 'process';
-
-import app from '@/app';
-import { env } from '@/config';
-
-// import { connectDB, env } from '@/config';
+import { env } from '@server/../config';
+import app from '@server/app';
 
 const PORT = env.server.port;
 
@@ -15,13 +11,13 @@ const server = app.listen(PORT, async () => {
 process.on('uncaughtException', err => {
     console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');
     console.log(err.name, err.message);
-    exit(1);
+    process.exit(1);
 });
 
 process.on('unhandledRejection', err => {
     console.log('UNHANDLED REJECTION! 💥 Shutting down...');
     console.log(err);
-    server.close(() => exit(1));
+    server.close(() => process.exit(1));
 });
 
 process.on('SIGTERM', () => {

@@ -4,7 +4,7 @@ import * as winston from 'winston';
 import 'winston-daily-rotate-file';
 
 // Migrate away from old log
-const OLD_LOG_FILE = path.join(import.meta.dir, '../config/logs/overseerr.log');
+const OLD_LOG_FILE = path.join(__dirname, '../logs/overseerr.log');
 if (fs.existsSync(OLD_LOG_FILE)) {
     const file = fs.lstatSync(OLD_LOG_FILE);
 
@@ -26,7 +26,7 @@ const hformat = winston.format.printf(
 );
 
 export const logger = winston.createLogger({
-    level: Bun.env.LOG_LEVEL?.toLowerCase() || 'debug',
+    level: process.env.LOG_LEVEL?.toLowerCase() || 'debug',
     format: winston.format.combine(
         winston.format.splat(),
         winston.format.timestamp(),
@@ -42,12 +42,9 @@ export const logger = winston.createLogger({
             ),
         }),
         new winston.transports.DailyRotateFile({
-            filename: Bun.env.CONFIG_DIRECTORY
-                ? `${Bun.env.CONFIG_DIRECTORY}/logs/overseerr-%DATE%.log`
-                : path.join(
-                      import.meta.dir,
-                      '../config/logs/overseerr-%DATE%.log',
-                  ),
+            filename: process.env.CONFIG_DIRECTORY
+                ? `${process.env.CONFIG_DIRECTORY}/logs/overseerr-%DATE%.log`
+                : path.join(__dirname, '../config/logs/overseerr-%DATE%.log'),
 
             datePattern: 'YYYY-MM-DD',
             zippedArchive: true,
@@ -57,10 +54,10 @@ export const logger = winston.createLogger({
             symlinkName: 'overseerr.log',
         }),
         new winston.transports.DailyRotateFile({
-            filename: Bun.env.CONFIG_DIRECTORY
-                ? `${Bun.env.CONFIG_DIRECTORY}/logs/.machine-logs-%DATE%.json`
+            filename: process.env.CONFIG_DIRECTORY
+                ? `${process.env.CONFIG_DIRECTORY}/logs/.machine-logs-%DATE%.json`
                 : path.join(
-                      import.meta.dir,
+                      __dirname,
                       '../config/logs/.machine-logs-%DATE%.json',
                   ),
             datePattern: 'YYYY-MM-DD',

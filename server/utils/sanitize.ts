@@ -1,6 +1,5 @@
+import type { SanitizeOptions, Sanitized } from '@server/types';
 import xss from 'xss';
-
-import type { SanitizeOptions, Sanitized } from '@/lib/types';
 
 /**
  * Sanitizes the provided data by applying XSS filtering and returning a copy of the data with all properties and values set as readonly.

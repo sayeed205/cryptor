@@ -1,45 +1,49 @@
 {
-    "compilerOptions": {
-        "lib": ["DOM", "DOM.Iterable", "ESNext"],
-        "target": "ESNext",
-        "module": "ESNext",
-        "moduleDetection": "force",
-        "jsx": "preserve",
-        "allowJs": true,
-        /* Bundler mode */
-        "moduleResolution": "Node",
-        "allowImportingTsExtensions": true,
-        "verbatimModuleSyntax": true,
-        "noEmit": true,
-        /* Linting */
-        "skipLibCheck": true,
-        "strict": true,
-        "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true,
-        "forceConsistentCasingInFileNames": true,
-        /* Extras */
-        "baseUrl": ".",
-        "paths": {
-            "@/*": ["src/*"],
-            "@test/*": ["test/*"],
-        },
-        "allowSyntheticDefaultImports": true,
-        "incremental": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "plugins": [
-            {
-                "name": "next",
-            },
-        ],
-        "esModuleInterop": true,
-        "resolveJsonModule": true,
-    },
-    "include": [
-        "next-env.d.ts",
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        ".next/types/**/*.ts",
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "exclude": ["node_modules"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "useUnknownInCatchVariables": false,
+    "incremental": true,
+    "baseUrl": "src",
+    "paths": {
+      "@server/*": [
+        "../server/*"
+      ],
+      "@app/*": [
+        "*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
